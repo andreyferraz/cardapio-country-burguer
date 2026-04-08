@@ -43,3 +43,12 @@ CREATE TABLE IF NOT EXISTS item_pedido (
     FOREIGN KEY (pedido_id) REFERENCES pedido(id),
     FOREIGN KEY (produto_id) REFERENCES produto(id)
 );
+
+CREATE TABLE IF NOT EXISTS admin_usuario (
+    id TEXT PRIMARY KEY,
+    username VARCHAR(120) NOT NULL UNIQUE,
+    senha_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'ADMIN',
+    ativo INTEGER NOT NULL DEFAULT 1 CHECK (ativo IN (0, 1)),
+    created_at DATETIME NOT NULL
+);
