@@ -896,15 +896,15 @@ body {
 }
 
 .login-alert--error {
-    background: rgba(185, 58, 58, 0.16);
+    background: #f9e7e7;
     border: 1px solid rgba(130, 21, 21, 0.45);
-    color: #671010;
+    color: #2b0505;
 }
 
 .login-alert--success {
-    background: rgba(61, 146, 68, 0.15);
+    background: #e8f5e8;
     border: 1px solid rgba(34, 103, 39, 0.42);
-    color: #184f1c;
+    color: #08240b;
 }
 
 .login-back {
@@ -926,5 +926,184 @@ body {
 
     .login-logo {
         width: min(320px, 86%);
+    }
+}
+
+.admin-page {
+    position: relative;
+    z-index: 1;
+    width: min(1200px, calc(100% - 2rem));
+    margin: 1rem auto 2rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.admin-header {
+    border: 3px solid rgba(39, 19, 8, 0.35);
+    border-radius: 18px;
+    background: linear-gradient(125deg, rgba(255, 242, 224, 0.9), rgba(196, 147, 106, 0.86));
+    box-shadow: 0 14px 30px rgba(41, 18, 8, 0.28);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+}
+
+.admin-kicker {
+    margin: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.admin-header h1 {
+    margin: 0.2rem 0 0;
+    text-transform: uppercase;
+    font-family: "WesternBlock", "Rockwell", serif;
+    font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+}
+
+.admin-subtitle {
+    margin: 0.3rem 0 0;
+    max-width: 680px;
+}
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.admin-link,
+.admin-logout,
+.admin-section-title button,
+.admin-actions button {
+    border: 1px solid #221206;
+    border-radius: 10px;
+    padding: 0.48rem 0.8rem;
+    text-decoration: none;
+    background: linear-gradient(180deg, #f8d775, #d6a226 70%);
+    color: #241103;
+    font-family: "WesternRusticSlab", "Cambria", serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04rem;
+    font-size: 0.78rem;
+    cursor: pointer;
+}
+
+.admin-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.8rem;
+}
+
+.admin-stat {
+    border: 2px solid rgba(53, 32, 16, 0.34);
+    border-radius: 14px;
+    background: rgba(255, 250, 242, 0.82);
+    padding: 0.7rem;
+}
+
+.admin-stat h2 {
+    margin: 0;
+    font-family: "WesternRusticSlab", "Cambria", serif;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+}
+
+.admin-stat p {
+    margin: 0.35rem 0 0;
+    font-size: 0.86rem;
+}
+
+.admin-section {
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    background: rgba(255, 248, 235, 0.94);
+    padding: 0.9rem;
+    overflow: auto;
+}
+
+.admin-section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+.admin-section-title h3 {
+    margin: 0;
+    text-transform: uppercase;
+    font-family: "WesternRusticSlab", "Cambria", serif;
+    font-size: 1rem;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 160px minmax(230px, 1fr);
+    gap: 0.4rem 0.6rem;
+    margin-bottom: 0.7rem;
+}
+
+.admin-form-grid input,
+.admin-form-grid select,
+.admin-form-grid textarea {
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    border-radius: 8px;
+    padding: 0.48rem;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.admin-form-grid label {
+    font-family: "WesternRusticSlab", "Cambria", serif;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    align-self: center;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 680px;
+}
+
+.admin-table th,
+.admin-table td {
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    padding: 0.45rem;
+    font-size: 0.84rem;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.admin-table th {
+    background: rgba(64, 42, 27, 0.9);
+    color: #f7e0b9;
+    text-transform: uppercase;
+    font-family: "WesternRusticSlab", "Cambria", serif;
+    letter-spacing: 0.04rem;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 0.4rem;
+}
+
+@media (max-width: 860px) {
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form-grid label {
+        margin-top: 0.35rem;
     }
 }

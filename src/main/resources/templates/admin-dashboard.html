@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Country Burguer | Dashboard Admin</title>
+    <meta name="description" th:content="${pageDescription}" content="Painel administrativo estatico do Country Burguer.">
+    <link rel="stylesheet" href="/css/app.css" th:href="@{/css/app.css}">
+</head>
+<body>
+    <div class="page-bg-overlay"></div>
+
+    <main class="admin-page">
+        <header class="admin-header">
+            <div>
+                <p class="admin-kicker">Painel Administrativo</p>
+                <h1>Dashboard Country Burguer</h1>
+                <p class="admin-subtitle">Area estatica para concentrar insercao, edicao e exclusao de dados.</p>
+            </div>
+            <div class="admin-header-actions">
+                <a class="admin-link" href="/" th:href="@{/}">Ver cardapio</a>
+                <form method="post" action="/logout" th:action="@{/logout}">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <button class="admin-logout" type="submit">Sair</button>
+                </form>
+            </div>
+        </header>
+
+        <section class="admin-summary">
+            <article class="admin-stat">
+                <h2>Categoria</h2>
+                <p>Organiza a ordem de exibicao do cardapio.</p>
+            </article>
+            <article class="admin-stat">
+                <h2>Produto</h2>
+                <p>Gerencia itens vendidos, preco e status ativo.</p>
+            </article>
+            <article class="admin-stat">
+                <h2>Adicional</h2>
+                <p>Controla complementos vinculados aos produtos.</p>
+            </article>
+            <article class="admin-stat">
+                <h2>Pedido</h2>
+                <p>Concentra dados de clientes e total da compra.</p>
+            </article>
+            <article class="admin-stat">
+                <h2>ItemPedido</h2>
+                <p>Detalha quantidade, observacao e preco unitario.</p>
+            </article>
+            <article class="admin-stat">
+                <h2>AdminUsuario</h2>
+                <p>Mantem usuarios de acesso ao painel.</p>
+            </article>
+        </section>
+
+        <section class="admin-section" id="categorias">
+            <div class="admin-section-title">
+                <h3>Cadastro de Categorias</h3>
+                <button type="button">Inserir categoria</button>
+            </div>
+            <div class="admin-form-grid">
+                <label for="categoria-nome">Nome</label>
+                <input id="categoria-nome" type="text" placeholder="Ex.: Hamburgueres">
+                <label for="categoria-ordem">Ordem de exibicao</label>
+                <input id="categoria-ordem" type="number" min="1" placeholder="1">
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Ordem</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>f02f...a19</td>
+                        <td>Hamburgueres</td>
+                        <td>1</td>
+                        <td class="admin-actions"><button type="button">Editar</button><button type="button">Excluir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="admin-section" id="produtos">
+            <div class="admin-section-title">
+                <h3>Cadastro de Produtos</h3>
+                <button type="button">Inserir produto</button>
+            </div>
+            <div class="admin-form-grid">
+                <label for="produto-categoria">Categoria (UUID)</label>
+                <input id="produto-categoria" type="text" placeholder="UUID da categoria">
+                <label for="produto-nome">Nome</label>
+                <input id="produto-nome" type="text" placeholder="Ex.: Cowboy Bacon">
+                <label for="produto-descricao">Descricao</label>
+                <textarea id="produto-descricao" rows="2" placeholder="Descricao curta do produto"></textarea>
+                <label for="produto-preco">Preco</label>
+                <input id="produto-preco" type="number" step="0.01" placeholder="29.90">
+                <label for="produto-imagem">Imagem URL</label>
+                <input id="produto-imagem" type="text" placeholder="/img/produtos/cowboy-bacon.webp">
+                <label for="produto-ativo">Ativo</label>
+                <select id="produto-ativo">
+                    <option value="1">Sim</option>
+                    <option value="0">Nao</option>
+                </select>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Preco</th>
+                        <th>Ativo</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1ab2...9ff</td>
+                        <td>Classic Country</td>
+                        <td>R$ 27,90</td>
+                        <td>Sim</td>
+                        <td class="admin-actions"><button type="button">Editar</button><button type="button">Excluir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="admin-section" id="adicionais">
+            <div class="admin-section-title">
+                <h3>Cadastro de Adicionais</h3>
+                <button type="button">Inserir adicional</button>
+            </div>
+            <div class="admin-form-grid">
+                <label for="adicional-produto">Produto (UUID)</label>
+                <input id="adicional-produto" type="text" placeholder="UUID do produto">
+                <label for="adicional-nome">Nome</label>
+                <input id="adicional-nome" type="text" placeholder="Ex.: Queijo Extra">
+                <label for="adicional-preco">Preco</label>
+                <input id="adicional-preco" type="number" step="0.01" placeholder="3.50">
+                <label for="adicional-ativo">Ativo</label>
+                <select id="adicional-ativo">
+                    <option value="1">Sim</option>
+                    <option value="0">Nao</option>
+                </select>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Preco</th>
+                        <th>Ativo</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>c9f0...14d</td>
+                        <td>Cheddar Cremoso</td>
+                        <td>R$ 4,00</td>
+                        <td>Sim</td>
+                        <td class="admin-actions"><button type="button">Editar</button><button type="button">Excluir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="admin-section" id="pedidos">
+            <div class="admin-section-title">
+                <h3>Gestao de Pedidos</h3>
+                <button type="button">Inserir pedido</button>
+            </div>
+            <div class="admin-form-grid">
+                <label for="pedido-nome">Nome cliente</label>
+                <input id="pedido-nome" type="text" placeholder="Nome completo">
+                <label for="pedido-telefone">Telefone</label>
+                <input id="pedido-telefone" type="text" placeholder="(11) 99999-0000">
+                <label for="pedido-endereco">Endereco</label>
+                <input id="pedido-endereco" type="text" placeholder="Rua, numero, bairro">
+                <label for="pedido-total">Valor total</label>
+                <input id="pedido-total" type="number" step="0.01" placeholder="48.90">
+                <label for="pedido-data">Data e hora</label>
+                <input id="pedido-data" type="datetime-local">
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Data</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9f00...2ac</td>
+                        <td>Maria Clara</td>
+                        <td>R$ 48,90</td>
+                        <td>2026-04-08 20:15</td>
+                        <td class="admin-actions"><button type="button">Editar</button><button type="button">Excluir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="admin-section" id="itens-pedido">
+            <div class="admin-section-title">
+                <h3>Itens de Pedido</h3>
+                <button type="button">Inserir item</button>
+            </div>
+            <div class="admin-form-grid">
+                <label for="item-pedido-id">Pedido (UUID)</label>
+                <input id="item-pedido-id" type="text" placeholder="UUID do pedido">
+                <label for="item-produto-id">Produto (UUID)</label>
+                <input id="item-produto-id" type="text" placeholder="UUID do produto">
+                <label for="item-quantidade">Quantidade</label>
+                <input id="item-quantidade" type="number" min="1" value="1">
+                <label for="item-observacao">Observacao</label>
+                <input id="item-observacao" type="text" placeholder="Sem cebola">
+                <label for="item-preco">Preco unitario</label>
+                <input id="item-preco" type="number" step="0.01" placeholder="27.90">
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Pedido</th>
+                        <th>Produto</th>
+                        <th>Qtd</th>
+                        <th>Preco Unit.</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7ef1...8c1</td>
+                        <td>9f00...2ac</td>
+                        <td>1ab2...9ff</td>
+                        <td>2</td>
+                        <td>R$ 27,90</td>
+                        <td class="admin-actions"><button type="button">Editar</button><button type="button">Excluir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="admin-section" id="usuarios-admin">
+            <div class="admin-section-title">
+                <h3>Usuarios Administrativos</h3>
+                <button type="button">Inserir usuario</button>
+            </div>
+            <div class="admin-form-grid">
+                <label for="admin-username">Username</label>
+                <input id="admin-username" type="text" placeholder="admin">
+                <label for="admin-senha">Senha</label>
+                <input id="admin-senha" type="password" placeholder="Senha inicial">
+                <label for="admin-role">Role</label>
+                <select id="admin-role">
+                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                </select>
+                <label for="admin-ativo">Ativo</label>
+                <select id="admin-ativo">
+                    <option value="1">Sim</option>
+                    <option value="0">Nao</option>
+                </select>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Ativo</th>
+                        <th>Criado em</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2de9...b7a</td>
+                        <td>admin</td>
+                        <td>ROLE_ADMIN</td>
+                        <td>Sim</td>
+                        <td>2026-04-08 18:30</td>
+                        <td class="admin-actions"><button type="button">Editar</button><button type="button">Excluir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

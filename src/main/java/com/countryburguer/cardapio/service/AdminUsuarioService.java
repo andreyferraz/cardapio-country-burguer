@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.countryburguer.cardapio.model.AdminUsuario;
@@ -22,10 +23,15 @@ public class AdminUsuarioService implements UserDetailsService {
 
     private final AdminUsuarioRepository adminUsuarioRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JdbcTemplate jdbcTemplate;
 
-    public AdminUsuarioService(AdminUsuarioRepository adminUsuarioRepository, PasswordEncoder passwordEncoder) {
+    public AdminUsuarioService(
+            AdminUsuarioRepository adminUsuarioRepository,
+            PasswordEncoder passwordEncoder,
+            JdbcTemplate jdbcTemplate) {
         this.adminUsuarioRepository = adminUsuarioRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -59,7 +65,20 @@ public class AdminUsuarioService implements UserDetailsService {
                     admin.setRole(ROLE_ADMIN);
                     admin.setAtivo(1);
                     admin.setCreatedAt(LocalDateTime.now());
-                    return adminUsuarioRepository.save(admin);
+
+                jdbcTemplate.update(
+                    """
+                    INSERT INTO admin_usuario (id, username, senha_hash, role, ativo, created_at)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    """,
+                    admin.getId().toString(),
+                    admin.getUsername(),
+                    admin.getSenhaHash(),
+                    admin.getRole(),
+                    admin.getAtivo(),
+                    admin.getCreatedAt());
+
+                return admin;
                 });
     }
 
