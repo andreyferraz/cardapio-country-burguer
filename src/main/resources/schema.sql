@@ -14,3 +14,12 @@ CREATE TABLE IF NOT EXISTS produto (
     categoria_id INTEGER,
     FOREIGN KEY (categoria_id) REFERENCES categoria(id)
 );
+
+CREATE TABLE IF NOT EXISTS adicional (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    ativo INTEGER NOT NULL DEFAULT 1 CHECK (ativo IN (0, 1)),
+    produto_id INTEGER,
+    FOREIGN KEY (produto_id) REFERENCES produto(id)
+);
