@@ -5,8 +5,12 @@ import java.util.UUID;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface ItemPedidoRepository extends CrudRepository<ItemPedidoRepository, UUID> {
+import com.countryburguer.cardapio.model.ItemPedido;
 
-    List<ItemPedidoRepository> findAll();
+public interface ItemPedidoRepository extends CrudRepository<ItemPedido, UUID> {
+
+    List<ItemPedido> findAll();
+
+    List<ItemPedido> findAllByPedidoId(UUID pedidoId);
 
 }

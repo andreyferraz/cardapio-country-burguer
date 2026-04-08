@@ -1,6 +1,8 @@
 package com.countryburguer.cardapio.model;
 
+import java.math.BigDecimal;
 import java.util.UUID;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -28,5 +30,9 @@ public class ItemPedido {
     private Integer quantidade;
 
     private String observacao;
+
+    @Column("preco_unitario")
+    @NotNull
+    private BigDecimal precoUnitario;
 
 }
