@@ -88,9 +88,9 @@
     		<version>3.45.2.0</version> 
 		</dependency>
 		<dependency>
-    		<groupId>com.sksamuel.scrimage</groupId>
-    		<artifactId>scrimage-webp</artifactId>
-    		<version>4.3.0</version>
+			<groupId>org.sejda.imageio</groupId>
+			<artifactId>webp-imageio</artifactId>
+			<version>0.1.6</version>
 		</dependency>
 	</dependencies>
 
