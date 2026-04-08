@@ -798,19 +798,6 @@ body {
     overflow: hidden;
 }
 
-.login-shell::after {
-    content: "";
-    position: absolute;
-    left: -90px;
-    bottom: -30px;
-    width: 470px;
-    height: 470px;
-    background: url("/img/cowboy.png") left bottom / contain no-repeat;
-    opacity: 0.9;
-    pointer-events: none;
-    z-index: 1;
-}
-
 .login-brand,
 .login-card {
     position: relative;
@@ -931,15 +918,6 @@ body {
     .login-shell {
         grid-template-columns: 1fr;
         padding: 1rem;
-    }
-
-    .login-shell::after {
-        left: auto;
-        right: -130px;
-        bottom: -90px;
-        width: 440px;
-        height: 440px;
-        opacity: 0.88;
     }
 
     .login-brand {
