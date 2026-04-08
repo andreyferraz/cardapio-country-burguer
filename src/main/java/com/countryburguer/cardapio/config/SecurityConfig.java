@@ -2,7 +2,6 @@ package com.countryburguer.cardapio.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,11 +16,16 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "/error").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/images/**", "/webjars/**", "/error", "/login").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().permitAll())
-            .formLogin(Customizer.withDefaults())
-            .logout(Customizer.withDefaults());
+            .formLogin(form -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
+                .permitAll())
+            .logout(logout -> logout
+                .logoutSuccessUrl("/login?logout")
+                .permitAll());
 
         return http.build();
     }

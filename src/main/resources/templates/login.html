@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Country Burguer | Login Admin</title>
+    <meta name="description" th:content="${pageDescription}" content="Acesso administrativo do painel Country Burguer.">
+    <link rel="stylesheet" href="/css/app.css" th:href="@{/css/app.css}">
+</head>
+<body>
+    <div class="page-bg-overlay"></div>
+
+    <main class="login-page">
+        <section class="login-shell">
+            <div class="login-rivet login-rivet--tl" aria-hidden="true"></div>
+            <div class="login-rivet login-rivet--tr" aria-hidden="true"></div>
+            <div class="login-rivet login-rivet--bl" aria-hidden="true"></div>
+            <div class="login-rivet login-rivet--br" aria-hidden="true"></div>
+
+            <div class="login-brand">
+                <img class="login-logo" src="/img/logo.png" th:src="@{/img/logo.png}" alt="Logo Country Burguer" loading="lazy">
+                <p class="login-subtitle">Painel Administrativo</p>
+            </div>
+
+            <div class="login-card">
+                <h1>Entrar no Painel</h1>
+
+                <div class="login-alert login-alert--error" th:if="${hasError}">
+                    Usuário ou senha inválidos.
+                </div>
+                <div class="login-alert login-alert--success" th:if="${hasLogout}">
+                    Você saiu da sessão com sucesso.
+                </div>
+
+                <form class="login-form" method="post" action="/login" th:action="@{/login}">
+                    <label for="username">Usuário</label>
+                    <input id="username" name="username" type="text" autocomplete="username" required>
+
+                    <label for="password">Senha</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+                    <button type="submit">Entrar</button>
+                </form>
+
+                <a class="login-back" href="/" th:href="@{/}">Voltar ao cardápio</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/app.js" th:src="@{/js/app.js}" defer></script>
+</body>
+</html>
