@@ -1,8 +1,9 @@
 package com.countryburguer.cardapio.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -22,20 +23,25 @@ public class Pedido {
     private UUID id;
 
     @Column("nome_cliente")
+    @NotNull
     private String nomeCliente;
 
     @Column("telefone_cliente")
+    @NotNull
     private String telefoneCliente;
 
     @Column("endereco_cliente")
+    @NotNull
     private String enderecoCliente;
 
     private String observacoes;
 
     @Column("valor_total")
+    @NotNull
     private BigDecimal valorTotal;
 
     @Column("data_pedido")
-    private LocalDate dataPedido;
+    @NotNull
+    private LocalDateTime dataPedido;
 
 }

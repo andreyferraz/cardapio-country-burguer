@@ -3,6 +3,7 @@ package com.countryburguer.cardapio.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
@@ -19,9 +20,11 @@ public class Categoria {
     @Id 
     private UUID id;
 
+    @NotNull
     private String nome;
 
     @Column("ordem_exibicao")
+    @NotNull
     private Integer ordemExibicao;
 
 }

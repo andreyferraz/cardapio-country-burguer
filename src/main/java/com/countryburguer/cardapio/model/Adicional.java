@@ -2,6 +2,7 @@ package com.countryburguer.cardapio.model;
 
 import java.math.BigDecimal;
 import java.util.UUID;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -23,10 +24,13 @@ public class Adicional {
     @Column("produto_id")
     private UUID produtoId;
 
+    @NotNull
     private String nome;
 
+    @NotNull
     private BigDecimal preco;
     
+    @NotNull
     private Integer ativo;
 
 }
