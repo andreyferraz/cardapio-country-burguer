@@ -21,13 +21,15 @@ import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.countryburguer.cardapio.exception.FileUploadException;
 
+@Service
 public class FileUploadService {
 
-    @Value("${upload.dir}")
+    @Value("${upload.dir:uploads}")
     private String uploadDir;
 
     @Value("${upload.webp.quality:0.75}")
