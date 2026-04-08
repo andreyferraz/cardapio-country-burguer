@@ -112,6 +112,40 @@ body {
     position: relative;
 }
 
+.hero-session-actions {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.hero-session-logout {
+    margin: 0;
+}
+
+.hero-session-link {
+    border: 1px solid rgba(36, 19, 8, 0.8);
+    border-radius: 999px;
+    background: rgba(255, 241, 214, 0.95);
+    color: #271303;
+    font-family: "WesternRusticSlab", "Cambria", serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04rem;
+    font-size: 0.72rem;
+    padding: 0.44rem 0.75rem;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.hero-session-link--logout {
+    background: linear-gradient(180deg, #f8d775, #d6a226 70%);
+}
+
 .hero-brand {
     z-index: 3;
 }
@@ -735,6 +769,13 @@ body {
 }
 
 @media (max-width: 780px) {
+    .hero-session-actions {
+        position: static;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 0.7rem;
+    }
+
     .hero-highlight {
         grid-template-columns: 1fr;
     }
