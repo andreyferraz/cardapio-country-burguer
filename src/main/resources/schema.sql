@@ -30,6 +30,16 @@ CREATE TABLE IF NOT EXISTS pedido (
     nome_cliente VARCHAR(255) NOT NULL,
     telefone_cliente VARCHAR(255) NOT NULL,
     endereco_cliente VARCHAR(255) NOT NULL,
-    observacoes TEXT,
     valor_total DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS item_pedido (
+    id TEXT PRIMARY KEY,
+    pedido_id TEXT,
+    produto_id TEXT,
+    quantidade INTEGER NOT NULL,
+    observacao TEXT,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (pedido_id) REFERENCES pedido(id),
+    FOREIGN KEY (produto_id) REFERENCES produto(id)
 );

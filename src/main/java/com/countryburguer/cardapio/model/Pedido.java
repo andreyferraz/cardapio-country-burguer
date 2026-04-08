@@ -34,8 +34,6 @@ public class Pedido {
     @NotNull
     private String enderecoCliente;
 
-    private String observacoes;
-
     @Column("valor_total")
     @NotNull
     private BigDecimal valorTotal;

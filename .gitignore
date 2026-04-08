@@ -38,4 +38,4 @@ src/main/resources/application.properties
 src/main/resources/application-*.properties
 
 ### Banco local ###
-.db
+cardapio.db
