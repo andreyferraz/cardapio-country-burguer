@@ -11,4 +11,6 @@ public interface AdicionalRepository extends CrudRepository<Adicional, UUID> {
 
     List<Adicional> findAll();
 
+    List<Adicional> findAllByProdutoId(UUID produtoId);
+
 }
