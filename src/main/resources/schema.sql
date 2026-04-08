@@ -23,3 +23,13 @@ CREATE TABLE IF NOT EXISTS adicional (
     produto_id INTEGER,
     FOREIGN KEY (produto_id) REFERENCES produto(id)
 );
+
+CREATE TABLE IF NOT EXISTS pedido (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    data_pedido DATETIME NOT NULL,
+    nome_cliente VARCHAR(255) NOT NULL,
+    telefone_cliente VARCHAR(255) NOT NULL,
+    endereco_cliente VARCHAR(255) NOT NULL,
+    observacoes TEXT,
+    valor_total DECIMAL(10, 2) NOT NULL
+);
