@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Country Burguer | Cardápio Digital</title>
+    <meta name="description" content="Cardápio digital Country Burguer no estilo faroeste. Escolha hambúrgueres, crepes, porções e finalize seu pedido." th:content="${pageDescription}">
+    <link rel="stylesheet" href="/css/app.css" th:href="@{/css/app.css}">
+</head>
+<body>
+    <div class="page-bg-overlay"></div>
+
+    <header class="hero" id="home">
+        <div class="hero-rivet hero-rivet--tl" aria-hidden="true"></div>
+        <div class="hero-rivet hero-rivet--tr" aria-hidden="true"></div>
+        <div class="hero-rivet hero-rivet--bl" aria-hidden="true"></div>
+        <div class="hero-rivet hero-rivet--br" aria-hidden="true"></div>
+
+        <div class="hero-brand">
+            <p class="hero-kicker">Desde o velho oeste, direto para a sua mesa</p>
+            <img class="hero-logo" src="/img/logo.png" th:src="@{/img/logo.png}" alt="Logo Country Burguer" loading="lazy">
+            
+        </div>
+
+        <div class="hero-highlight">
+            <img src="/img/hero-burger.svg" th:src="@{/img/hero-burger.svg}" alt="Hambúrguer em destaque" class="hero-highlight-image" loading="lazy">
+            <div class="hero-highlight-copy">
+                <h2>X-Country em Destaque</h2>
+                <p>Pão selado, carne suculenta, cheddar e bacon crocante com o toque rústico da casa.</p>
+            </div>
+        </div>
+
+        <button class="cta-main" id="goToMenuBtn" type="button">
+            <span class="cta-main-star" aria-hidden="true">✦</span>
+            Ver Cardápio Digital
+        </button>
+    </header>
+
+    <nav class="category-nav" aria-label="Categorias do cardápio">
+        <button class="mobile-nav-toggle" id="mobileNavToggle" type="button" aria-expanded="false" aria-controls="categoryMenu">
+            Menu
+        </button>
+        <ul id="categoryMenu" class="category-list"></ul>
+    </nav>
+
+    <main id="menu" class="layout">
+        <section class="products-section">
+            <header class="section-heading">
+                <span class="section-stars" aria-hidden="true">✦ ✦</span>
+                <h2 id="activeCategoryTitle">Cardápio</h2>
+                <span class="section-stars" aria-hidden="true">✦ ✦</span>
+            </header>
+            <p id="activeCategoryDescription" class="section-description"></p>
+            <div id="productGrid" class="product-grid"></div>
+        </section>
+
+        <aside class="cart-panel" id="cartPanel" aria-label="Carrinho">
+            <header class="cart-header">
+                <h3>Carrinho</h3>
+                <p id="cartCount">0 itens</p>
+            </header>
+            <div id="cartItems" class="cart-items"></div>
+            <footer class="cart-footer">
+                <div class="cart-total-line">
+                    <span>Total</span>
+                    <strong id="cartTotal">R$ 0,00</strong>
+                </div>
+                <button id="checkoutBtn" class="btn-checkout" type="button">Ir para Checkout</button>
+            </footer>
+        </aside>
+    </main>
+
+    <section id="productDrawer" class="product-drawer" aria-hidden="true">
+        <div class="product-drawer-backdrop" data-close-drawer="true"></div>
+        <article class="product-drawer-content" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+            <button class="drawer-close" type="button" data-close-drawer="true" aria-label="Fechar">×</button>
+            <img id="drawerImage" src="" alt="Produto" class="drawer-image" loading="lazy">
+            <h3 id="drawerTitle"></h3>
+            <p id="drawerDescription" class="drawer-description"></p>
+            <p class="drawer-base-price">Preço base: <strong id="drawerBasePrice"></strong></p>
+
+            <div id="ingredientsBlock" class="drawer-block"></div>
+            <div id="additionalsBlock" class="drawer-block"></div>
+
+            <label class="drawer-observation" for="drawerObservation">Observações</label>
+            <textarea id="drawerObservation" placeholder="Ex: sem cebola, ponto da carne..." rows="3"></textarea>
+
+            <div class="drawer-actions">
+                <span>Total do item: <strong id="drawerTotalPrice">R$ 0,00</strong></span>
+                <button id="confirmAddToCart" type="button">Confirmar e Adicionar</button>
+            </div>
+        </article>
+    </section>
+
+    <section id="checkoutSection" class="checkout-section" aria-hidden="true">
+        <div class="checkout-card">
+            <h3>Finalizar Pedido</h3>
+            <form id="checkoutForm" novalidate>
+                <label for="customerName">Nome</label>
+                <input id="customerName" name="customerName" type="text" required>
+
+                <label for="customerPhone">Telefone</label>
+                <input id="customerPhone" name="customerPhone" type="tel" required>
+
+                <label for="customerAddress">Endereço completo</label>
+                <textarea id="customerAddress" name="customerAddress" rows="3" required></textarea>
+
+                <label for="paymentMethod">Pagamento</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="">Selecione</option>
+                    <option value="pix">PIX</option>
+                    <option value="credito">Cartão de Crédito</option>
+                    <option value="debito">Cartão de Débito</option>
+                    <option value="dinheiro">Dinheiro</option>
+                </select>
+
+                <div class="checkout-actions">
+                    <button type="button" id="cancelCheckout">Voltar</button>
+                    <button type="submit">Confirmar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section id="confirmationSection" class="confirmation-section" aria-hidden="true">
+        <div class="confirmation-card">
+            <h3>Agradecemos a sua preferência!</h3>
+            <p>Seu pedido foi registrado. Em breve entraremos em contato para confirmar os detalhes.</p>
+            <button id="newOrderBtn" type="button">Fazer Novo Pedido</button>
+        </div>
+    </section>
+
+    <script src="/js/app.js" th:src="@{/js/app.js}"></script>
+</body>
+</html>
