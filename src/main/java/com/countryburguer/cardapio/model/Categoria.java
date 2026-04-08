@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
@@ -17,7 +18,10 @@ public class Categoria {
 
     @Id 
     private UUID id;
+
     private String nome;
+
+    @Column("ordem_exibicao")
     private Integer ordemExibicao;
 
 }
