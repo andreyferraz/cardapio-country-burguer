@@ -11,4 +11,6 @@ public interface CategoriaRepository extends CrudRepository<Categoria, UUID> {
 
     List<Categoria> findAll();
 
+    List<Categoria> findAllByOrderByOrdemExibicaoAsc();
+
 }
